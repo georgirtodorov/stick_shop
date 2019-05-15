@@ -1,0 +1,18 @@
+{% extends 'index.html' %}
+{% block 'body' %}
+survachki
+    <div class="row">
+        {% for s in survachki %}
+         <div class="col-lg-4">
+              <div class="card" style="width: 18rem;">
+          <img src="{{s.image_url}}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{s.name}}</h5>
+            <p class="card-text">{{s.price}}</p>
+            <a href="{% url 'furniture-detail' f.id %}" class="btn btn-primary">See details</a>
+          </div>
+        </div>
+         </div>
+        {% endfor %}
+    </div>
+    {% endblock %}

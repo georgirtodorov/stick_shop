@@ -1,0 +1,22 @@
+{% extends 'index.html' %}
+{% block 'body' %}
+<div style="background-image: url('http://theswellesleyreport.com/wp-content/uploads/2012/10/haunted-forest.jpg'); width: 100%; min-height: 600px;">
+fetchers
+
+    <div class="row" >
+        {% for s in stick %}
+         <div class="col-lg-4">
+          <div class="card" style="width: 18rem;">
+            <img src="{{s.stick}}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">{{s.stick}}</h5>
+            <p class="card-text">{{s.stick}}</p>
+            <a href="{% url 'furniture-detail' f.id %}" class="btn btn-primary">See details</a>
+          </div>
+        </div>
+        </div>
+        {% endfor %}
+
+    </div>
+</div>
+    {% endblock %}
