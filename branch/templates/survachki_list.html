@@ -9,7 +9,8 @@ survachki
           <div class="card-body">
             <h5 class="card-title">{{s.name}}</h5>
             <p class="card-text">{{s.price}}</p>
-            <a href="{% url 'furniture-detail' f.id %}" class="btn btn-primary">See details</a>
+          <a href="{% url 'survachki-edit' s.id %}" class="btn btn-success">Edit</a>
+              <a href="{% url 'survachki-delete' s.id %}" class="btn btn-danger">Delete</a>
           </div>
         </div>
          </div>

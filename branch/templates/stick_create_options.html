@@ -1,0 +1,9 @@
+{% extends 'index.html' %}
+{% block 'body' %}
+
+<div class="btn-group" style="width:100%">
+    <button style="width:33.3%"><a href="{% url 'magic_wand_create' %}" class="btn btn-default">Magic Wand</a></button>
+    <button style="width:33.3%"><a href="{% url 'survachki_create' %}" class="btn btn-default">Survachka</a></button>
+    <button style="width:33.3%"><a href="{% url 'fetchers_create' %}" class="btn btn-default">Fetcher</a></button>
+</div>
+{% endblock %}

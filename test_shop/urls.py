@@ -22,4 +22,8 @@ urlpatterns = [
     path('magic_wand/', include('branch.urls')),
     path('survachki/', include('branch.urls')),
     path('fetchers/', include('branch.urls')),
+    path('accounts/', include('accounts.urls')),
+    path('branch/', include('branch.urls')),
+
+
 ]

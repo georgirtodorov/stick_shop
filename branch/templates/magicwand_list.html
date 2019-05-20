@@ -9,7 +9,12 @@ hari potar
           <div class="card-body">
             <h5 class="card-title">{{s.name}}</h5>
             <p class="card-text">{{s.price}}</p>
-            <a href="{% url 'furniture-detail' f.id %}" class="btn btn-primary">See details</a>
+            <p class="card-text">{{s.user}}</p>
+
+              <a href="{% url 'magic_wand-edit' s.id %}" class="btn btn-success">Edit</a>
+              <a href="{% url 'magic_wand-delete' s.id %}" class="btn btn-danger">Delete</a>
+
+
           </div>
         </div>
          </div>

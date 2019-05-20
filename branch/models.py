@@ -21,6 +21,7 @@ class Stick(models.Model):
 
 
 class MagicWand(Stick):
+    category = 'wizzard'
     magic_power = models.PositiveIntegerField(validators=[MaxValueValidator(9000)])
 
     def __str__(self):
@@ -28,6 +29,7 @@ class MagicWand(Stick):
 
 
 class Survachki(Stick):
+    category = 'survacane'
     money_income = models.PositiveIntegerField(validators=[MinValueValidator(10)])
 
     def __str__(self):
@@ -35,6 +37,7 @@ class Survachki(Stick):
 
 
 class Fetchers(Stick):
+    category = 'GoodBois'
     barkness = models.PositiveIntegerField(validators=[MaxValueValidator(10000)])
     happiness = models.PositiveIntegerField(validators=[MinValueValidator(10000)])
 

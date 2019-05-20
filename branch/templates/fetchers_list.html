@@ -6,17 +6,19 @@ fetchers
     <div class="row" >
         {% for s in fetchers %}
          <div class="col-lg-4">
-          <div class="card" style="width: 18rem;">
-            <img src="{{s.fetchers}}" class="card-img-top" alt="...">
+              <div class="card" style="width: 18rem;">
+          <img src="{{s.image_url}}" class="card-img-top" alt="...">
           <div class="card-body">
-            <h5 class="card-title">{{s.fetchers}}</h5>
-            <p class="card-text">{{s.fetchers}}</p>
-            <a href="{% url 'furniture-detail' f.id %}" class="btn btn-primary">See details</a>
-          </div>
+            <h5 class="card-title">Model: {{s.name}}</h5>
+            <p class="card-text">Price: {{s.price}}</p>
+            <a href="{% url 'fetchers-edit' s.id %}" class="btn btn-success">Edit</a>
+            <a href="{% url 'fetchers-delete' s.id %}" class="btn btn-danger">Delete</a>
+             </div>
         </div>
-        </div>
+         </div>
         {% endfor %}
 
     </div>
 </div>
     {% endblock %}
+
