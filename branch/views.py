@@ -2,7 +2,7 @@ from django.shortcuts import render
 from django.views import generic
 from .models import MagicWand, Survachki, Fetchers, Stick
 from django.contrib.auth.mixins import LoginRequiredMixin
-from accounts.models import ProfileUser
+from accounts.models import ProfileUser , User
 from collections.abc import Iterable
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core import serializers
@@ -100,20 +100,20 @@ class SurvachkiCreate(LoginRequiredMixin, generic.CreateView):
 
 class MagicWandList(generic.ListView):
     model = MagicWand
-    template_name = 'magicwand_list.html'
-    context_object_name = 'magic_wand'
+    template_name = 'Item_list.html'
+    context_object_name = 'item'
 
 
 class SurvachkiList(generic.ListView):
     model = Survachki
-    template_name = 'survachki_list.html'
-    context_object_name = 'survachki'
+    template_name = 'Item_list.html'
+    context_object_name = 'item'
 
 
 class FetchersList(generic.ListView):
     model = Fetchers
-    template_name = 'fetchers_list.html'
-    context_object_name = 'fetchers'
+    template_name = 'Item_list.html'
+    context_object_name = 'item'
 
     '''END PRODUCT LISTING'''
 

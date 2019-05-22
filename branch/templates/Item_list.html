@@ -1,0 +1,56 @@
+{% extends 'index.html' %}
+{% block body %}
+hari potar
+    <div class="row">
+        {% for s in item %}
+         <div class="col-lg-4">
+              <div class="card" style="width: 18rem;">
+          <img src="{{s.image_url}}" class="card-img-top" alt="...">
+          <div class="card-body">
+            <h5 class="card-title">Model: {{s.name}}</h5>
+            <p class="card-text">Price: {{s.price}}</p>
+              {% if s.magic_power %}
+            <p class="card-text">Magic power: {{s.magic_power}}</p>
+              {% endif %}
+              {% if s.money_income %}
+            <p class="card-text">Money income {{s.money_income}}</p>
+              {% endif %}
+              {% if s.barkness %}
+            <p class="card-text">Barkness: {{s.barkness}}</p>
+              {% endif %}
+              {% if s.happiness %}
+            <p class="card-text">Happiness: {{s.happiness}}</p>
+              {% endif %}
+
+            <p class="card-text">Posted by: {{s.user}}</p>
+            <p class="card-text">Category: {{s.category}}</p>
+
+{% if s.category == 'wizzard' and user.username == s.user %}
+              <a href="{% url 'magic_wand-edit' s.id %}" class="btn btn-success">Edit</a>
+              <a href="{% url 'magic_wand-delete' s.id %}" class="btn btn-danger">Delete</a>
+{% endif %}
+{% if s.category == 'GoodBois' and user.username == s.user or user.is_superuser %}
+              <a href="{% url 'fetchers-edit' s.id %}" class="btn btn-success">Edit</a>
+              <a href="{% url 'fetchers-delete' s.id %}" class="btn btn-danger">Delete</a>
+{% endif %}
+{% if s.category == 'survacane' and user.username == s.user or user.is_superuser %}
+              <a href="{% url 'survachki-edit' s.id %}" class="btn btn-success">Edit</a>
+              <a href="{% url 'survachki-delete' s.id %}" class="btn btn-danger">Delete</a>
+{% endif %}
+
+ITEM USER profileuser  : {{ s.user }} / ID {{ s.user.id }}
+------
+CURRENT USER Django USER : {{ user.username }} / ID {{ user.id }}
+
+
+{% if s.user == user.username %}
+           !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+{% endif %}
+
+
+          </div>
+        </div>
+         </div>
+        {% endfor %}
+    </div>
+    {% endblock %}

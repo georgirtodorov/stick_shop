@@ -1,6 +1,7 @@
 from django import forms
 from django.core.validators import MinValueValidator
 
+
 from .models import Stick, MagicWand, Survachki, Fetchers
 
 
@@ -80,7 +81,7 @@ class CreateFetchersForm(forms.ModelForm):
     category = 'GoodBois'
     class Meta:
         model = Fetchers
-        fields = ('id', 'image_url', 'name', 'price', 'barkness', 'happiness')
+        fields = ('id', 'image_url', 'name', 'price', 'barkness', 'happiness',)
 
 
 class CreateSurvachkiForm(forms.ModelForm):

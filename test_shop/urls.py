@@ -15,15 +15,23 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.conf.urls import url,include
+from accounts import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', include('common.urls')),
+    #path('admin/', admin.site.urls),
+    #path('', include('common.urls')),
     path('magic_wand/', include('branch.urls')),
     path('survachki/', include('branch.urls')),
     path('fetchers/', include('branch.urls')),
-    path('accounts/', include('accounts.urls')),
+    #path('accounts/', include('accounts.urls')),
     path('branch/', include('branch.urls')),
+
+    path('admin/', admin.site.urls),
+    url(r'^$', views.index, name='index'),
+    url(r'^special/', views.special, name='special'),
+    url(r'^accounts/', include('accounts.urls')),
+    url(r'^logout/$', views.user_logout, name='logout')
 
 
 ]
