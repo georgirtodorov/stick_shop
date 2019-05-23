@@ -2,11 +2,14 @@
 {% block body %}
 <div class="container">
   <div class="jumbotron">
-    <h1>Welcome to the Djungle !</h1>
+    <h1>Welcome to Stick Shop !</h1>
     {% if user.is_authenticated %}
         <h2>Hello {{ user.username }}</h2>
     {% else %}
-        <h2>Register or Login if you'd like to</h2>
+        <p class="lead">To get maximum of our site - <br><a href="{% url 'user_login' %}" class="btn btn-lg btn-secondary">Sign in</a></p>
+            <p class="lead"> Do not have an account? <br>
+              <a href="{% url 'register' %}" class="btn btn-lg btn-secondary">Sign up</a>
+            </p>
     {% endif %}
   </div>
 </div>

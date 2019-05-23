@@ -1,21 +1,25 @@
 {% extends 'index.html'%}
 {% block body %}
 
-HELOOOOOOOOOOOOOOOOOOOO
-<h2>{{ user.user }}</h2>
+
+
+
+<h2> Hello {{ user_profile.user }} ...</h2>
+<img src="https://external-preview.redd.it/Q_jQKTk88F6ouuVzLOQmP8wqp-1NuuxVNBf8MNVIAsI.jpg?width=1169&height=500&auto=webp&s=094370952dde804cfc5a16ed934021444b99250a" />
 <li class="nav-item active">
 
 
     </li>
 <div class="content-section">
       <div class="media">
-        <img class="rounded-circle account-img" src="{{ user.profile_picture }}">
+        <img class="rounded-circle account-img" src="{{ user_profile.profile_pic }}">
         <div class="media-body">
-          <h2 class="account-heading">{{ user.user }}</h2>
+          <h2 class="account-heading">{{ user_profile.username }}</h2>
         </div>
       </div>
       <!-- FORM HERE -->
     </div>
+
 
 
 

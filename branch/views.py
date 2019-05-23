@@ -20,11 +20,12 @@ def serialize_data(queryset):
 def has_access_to_modify(current_user, item):
     if current_user.is_superuser:
         return True
-    elif current_user.id == item.user.id:
+    elif current_user.id == item.username.id:
         return True
     return False
 
 '''PRODUCT DETAILS '''
+
 
 '''USER STICKS'''
 
@@ -61,11 +62,16 @@ class MagicWandCreate(LoginRequiredMixin, generic.CreateView):
     model = MagicWand
     template_name = 'Item_create.html'
     form_class = CreateMagicWandForm
-    success_url = '/admin/'
+    success_url = '/branch/create/'
 
     def form_valid(self, form):
-        user = ProfileUser.objects.all().filter(user__pk=self.request.user.id)[0]
-        form.instance.user = user
+        print(self.request.user.id)
+        print(User.objects.all().filter(username=self.request.user.username)[0])
+        user = User.objects.get(username=self.request.user.username)
+        print(user)
+        #username = User.objects.all().filter(username=self.request.user.username)[0])
+        #print(username)
+        form.instance.username = user
         return super().form_valid(form)
 
 
@@ -74,11 +80,12 @@ class FetchersCreate(LoginRequiredMixin, generic.CreateView):
     model = Fetchers
     template_name = 'Item_create.html'
     form_class = CreateFetchersForm
-    success_url = '/admin/'
+    success_url = '/branch/fetchers'
 
     def form_valid(self, form):
-        user = ProfileUser.objects.all().filter(user__pk=self.request.user.id)[0]
-        form.instance.user = user
+        user = User.objects.get(username=self.request.user.username)
+        print(user)
+        form.instance.username = user
         return super().form_valid(form)
 
 
@@ -87,11 +94,12 @@ class SurvachkiCreate(LoginRequiredMixin, generic.CreateView):
     model = Survachki
     template_name = 'Item_create.html'
     form_class = CreateSurvachkiForm
-    success_url = '/admin/'
+    success_url = '/branch/survachki'
 
     def form_valid(self, form):
-        user = ProfileUser.objects.all().filter(user__pk=self.request.user.id)[0]
-        form.instance.user = user
+        user = User.objects.get(username=self.request.user.username)
+        print(user)
+        form.instance.username = user
         return super().form_valid(form)
 
     ''' END CREATE FORMS'''

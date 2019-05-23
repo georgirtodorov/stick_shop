@@ -1,6 +1,20 @@
 {% extends 'index.html' %}
 {% block body %}
-hari potar
+
+
+
+{% if item.0.category == 'wizzard' %}
+<h1><font color="red">Magic Wands: </font> because the wand chooses its own master!</h1>
+<h2>With these bad bois you can owe Dumbledore and Harry combined... </h2>
+{% endif %}
+{% if item.0.category == 'GoodBois' %}
+<h1> <font color="red">For Good Bois: </font> Deserve their love and buy all the sticks!</h1>
+{% endif %}
+{% if item.0.category == 'survacane' %}
+<h1><font color="red">Survachki: </font>Increase your income to infinity and beyond!</h1>
+{% endif %}
+
+
     <div class="row">
         {% for s in item %}
          <div class="col-lg-4">
@@ -22,30 +36,22 @@ hari potar
             <p class="card-text">Happiness: {{s.happiness}}</p>
               {% endif %}
 
-            <p class="card-text">Posted by: {{s.user}}</p>
+            <p class="card-text">Posted by: {{s.username}}</p>
             <p class="card-text">Category: {{s.category}}</p>
 
-{% if s.category == 'wizzard' and user.username == s.user %}
+{% if s.category == 'wizzard' and user.id == s.username.id or user.is_superuser and s.category == 'wizzard'%}
               <a href="{% url 'magic_wand-edit' s.id %}" class="btn btn-success">Edit</a>
               <a href="{% url 'magic_wand-delete' s.id %}" class="btn btn-danger">Delete</a>
 {% endif %}
-{% if s.category == 'GoodBois' and user.username == s.user or user.is_superuser %}
+{% if s.category == 'GoodBois' and user.id == s.username.id or user.is_superuser and s.category == 'GoodBois'%}
               <a href="{% url 'fetchers-edit' s.id %}" class="btn btn-success">Edit</a>
               <a href="{% url 'fetchers-delete' s.id %}" class="btn btn-danger">Delete</a>
 {% endif %}
-{% if s.category == 'survacane' and user.username == s.user or user.is_superuser %}
+{% if s.category == 'survacane' and user.id == s.username.id or user.is_superuser and s.category == 'survacane' %}
               <a href="{% url 'survachki-edit' s.id %}" class="btn btn-success">Edit</a>
               <a href="{% url 'survachki-delete' s.id %}" class="btn btn-danger">Delete</a>
 {% endif %}
 
-ITEM USER profileuser  : {{ s.user }} / ID {{ s.user.id }}
-------
-CURRENT USER Django USER : {{ user.username }} / ID {{ user.id }}
-
-
-{% if s.user == user.username %}
-           !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-{% endif %}
 
 
           </div>

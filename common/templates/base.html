@@ -11,8 +11,7 @@
       <div class="container">
         <ul class="nav navbar-nav">
 {# Django Home Link / Admin Link / Register Link#}
-          <li><a class="navbar-brand" href="{% url 'index' %}">DJANGO</a></li>
-          <li><a class="navbar-link" href="{% url 'admin:index' %}">Admin</a></li>
+          <li><a class="navbar-brand" href="{% url 'index' %}">Stick Shop</a></li>
           <li><a class="navbar-link" href="{% url 'magic_wand' %}">Magic Wands</a></li>
           <li><a class="navbar-link" href="{% url 'survachki' %}">Survachki</a></li>
           <li><a class="navbar-link" href="{% url 'fetchers' %}">For Good Bois</a></li>
@@ -21,9 +20,13 @@
           {# Some logic on what to display for last item#}
           {% if user.is_authenticated %}
             <li><a href="{% url 'logout' %}">Logout</a></li>
+            <li><a href="{% url 'redirect-user-detail' %}">My Profile</a></li>
           {% else %}
             <li><a class="navbar-link" href="{% url 'user_login' %}">Login</a></li>
             <li><a class="navbar-link" href="{% url 'register' %}">Register</a></li>
+          {% endif %}
+          {% if user.is_superuser %}
+           <li><a class="navbar-link" href="{% url 'admin:index' %}">Admin</a></li>
           {% endif %}
 </ul>
       </div>
@@ -31,9 +34,10 @@
 
 
     {% block body %}
-         asdasdadada
+
     {% endblock %}
-         asdasdadada
+
     </div>
+    </nav>
   </body>
 </html>

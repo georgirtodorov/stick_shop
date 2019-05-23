@@ -6,6 +6,7 @@ from django.urls import reverse
 from django.contrib.auth.decorators import login_required
 
 
+
 '''CUSTOM IMPORTS'''
 from django.contrib.auth.models import User
 from django.views.generic import DetailView
@@ -56,14 +57,15 @@ def user_login(request):
         if user:
             if user.is_active:
                 login(request,user)
-                return HttpResponseRedirect(reverse('index'))
+                return HttpResponseRedirect(reverse('redirect-user-detail'))
             else:
                 return HttpResponse("Your account was inactive.")
         else:
 
             print("Someone tried to login and failed.")
             print("They used username: {} and password: {}".format(username,password))
-            return HttpResponse("Invalid login details given")
+            #return HttpResponse("Invalid login details given")
+            return render(request, 'registration.html', {})
     else:
         return render(request, 'login.html', {})
 
@@ -72,11 +74,13 @@ def user_login(request):
 def redirect_to_user_profile(request):
     if request.user.is_authenticated:
         print(request.user.pk)
-        redirect_url = f"{request.user.pk}/"
+        user = ProfileUser.objects.get(user_id=request.user.id)
+        print(user.id)
+        redirect_url = f"{user.id}/"
         return HttpResponseRedirect(redirect_to=redirect_url)
 
 
 class UserProfile(DetailView):
-    model = User
+    model = ProfileUser
     template_name = 'user_profile.html'
-    context_object_name = 'user'
+    context_object_name = 'user_profile'

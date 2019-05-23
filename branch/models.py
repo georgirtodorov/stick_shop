@@ -1,7 +1,7 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 
-from accounts.models import ProfileUser
+from accounts.models import ProfileUser, User
 
 
 class Stick(models.Model):
@@ -11,7 +11,7 @@ class Stick(models.Model):
         ('GoodBois', 'GoodBois')
     ]
     category = models.CharField(max_length=20, choices=KIND_BRANCH_CATEGORIES, blank=True, default='unknown')
-    user = models.ForeignKey(ProfileUser, on_delete=models.CASCADE)
+    username = models.ForeignKey(User, on_delete=models.CASCADE)
     image_url = models.URLField(default='https://www.google.com/url?sa=i&source=images&cd=&cad=rja&uact=8&ved=2ahUKEwjX5Z3jnZ3iAhUQEVAKHXooDSsQjRx6BAgBEAU&url=https%3A%2F%2Fwww.brazos-walking-sticks.com%2Fbackpacker-oak-walking-stick%2F&psig=AOvVaw0G4cdGjcT7wteIikom5c3B&ust=1557999287221364')
     name = models.CharField(max_length=200)
     price = models.PositiveIntegerField(validators=[MinValueValidator(10)])
