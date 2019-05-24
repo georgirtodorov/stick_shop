@@ -67,7 +67,8 @@ def user_login(request):
             print("Someone tried to login and failed.")
             print("They used username: {} and password: {}".format(username,password))
             #return HttpResponse("Invalid login details given")
-            return render(request, 'registration.html', {})
+            return HttpResponseRedirect('/accounts/register/')
+            #return render(request, 'registration.html', {})
     else:
         return render(request, 'login.html', {})
 
@@ -89,42 +90,17 @@ class UserProfile(DetailView):
 
 '''DELETE PROFILES'''
 
-def has_access_to_delete(current_user, item):
-    if current_user.is_superuser:
-        return True
-    #elif current_user.id == item.user.id: item id nqma da se izpolzva
-     #   return True
-    return False
+def delete_user(request, pk):
 
-class ProfileDelete(LoginRequiredMixin, generic.DeleteView):
-    model = ProfileUser
-    login_url = 'accounts/login/'
-    context_object_name = 'item'
-
-    def get(self, request, pk):
-        if not has_access_to_delete(self.request.user, self.get_object()):
-            return render(request, 'permission_denied.html')
-        return render(request, 'Item_delete.html', {'item': self.get_object()})
-
-    def post(self, request, pk):
-        if not has_access_to_delete(self.request.user, self.get_object()):
-            return render(request, 'permission_denied.html')
-        print(self.get_object())
-        user = User.objects.get(username=self.get_object())
-        user.delete()
-        return HttpResponseRedirect('')
+    user = User.objects.get(pk=pk)
+    print(user)
+    user.delete()
+    return render('index.html')
 
 
-'''EDIT PROFILE'''
-def has_access_to_edit(current_user, item):
-    if current_user.is_superuser:
-        return True
-    elif current_user.id == item.user.id:
-        return True
-    return False
 
 
-'''VIEW PROFILE'''
+'''VIEW PROFILE CONTACT'''
 
 class ViewUserProfile(DetailView):
 

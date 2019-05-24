@@ -3,12 +3,17 @@
 
 
 
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+
+
 {% if item.0.category == 'wizzard' %}
 <h1><font color="red">Magic Wands: </font> because the wand chooses its own master!</h1>
 <h2>With these bad bois you can owe Dumbledore and Harry combined... </h2>
 {% endif %}
 {% if item.0.category == 'GoodBois' %}
-<h1> <font color="red">For Good Bois: </font> Deserve their love and buy all the sticks!</h1>
+<h1> <font color="red">For The Goodest Bois! </font></h1>
 {% endif %}
 {% if item.0.category == 'survacane' %}
 <h1><font color="red">Survachki: </font>Increase your income to infinity and beyond!</h1>
@@ -39,8 +44,9 @@
             <p class="card-text">Posted by: {{s.username}}</p>
             <p class="card-text">Category: {{s.category}}</p>
 
-
-            <a href="{% url 'user_view-detail' s.username.id %}" class="btn btn-success">View Profile</a>
+            {% if not user.id == s.username.id or user.is_superuser %}
+            <a href="{% url 'user_view-detail' s.username.id %}" class="btn btn-success">View Seller Profile Contact</a>
+            {% endif %}
 
 {% if s.category == 'wizzard' and user.id == s.username.id or user.is_superuser and s.category == 'wizzard'%}
               <a href="{% url 'magic_wand-edit' s.id %}" class="btn btn-success">Edit</a>
@@ -55,11 +61,11 @@
               <a href="{% url 'survachki-delete' s.id %}" class="btn btn-danger">Delete</a>
 {% endif %}
 
-
-
           </div>
         </div>
          </div>
         {% endfor %}
     </div>
     {% endblock %}
+
+

@@ -1,32 +1,50 @@
 {% extends 'index.html'%}
 {% block body %}
 
+{% if not user.is_authenticated %}
 
+<h2>Don't have an account yet?</h2>
+<h2>You need registration to get full access.</h2>
 
+<h1><button style="width:33.3%"><a href="{% url 'register' %}" class="btn btn-default">Register Here</a></button></h1>
+
+{% else %}
 
 <h2> Hello {{ user_profile.user.username }} ...</h2>
 <img src="https://external-preview.redd.it/Q_jQKTk88F6ouuVzLOQmP8wqp-1NuuxVNBf8MNVIAsI.jpg?width=1169&height=500&auto=webp&s=094370952dde804cfc5a16ed934021444b99250a" />
 <li class="nav-item active">
+{% endif %}
 
-
-{% if user.id == user_profile.user.id or user.is_superuser %}
+{% if not user.is_authenticated %}
+-
+ {% else %}
+{% if user.is_superuser %}
 
  <a href="{% url 'profile-delete' user_profile.id %}" class="btn btn-danger">Delete</a>
 
 {% endif %}
+    {% endif %}
+
+{% if not user.is_authenticated %}
+-
+ {% else %}
+
+    {{ user_profile.profile_pic }}
+    <img src="{{ user_profile.profile_pic }}">
 
     </li>
 <div class="content-section">
       <div class="media">
-        <img class="rounded-circle account-img" src="{{ user_profile.profile_pic }}">
+        <img class="rounded-circle account-img" src="{{ user.profile_pic }}">
         <div class="media-body">
           <h2 class="account-heading">{{ user_profile.username }}</h2>
+          <h2 class="account-heading">{{ user_profile.email }}</h2>
         </div>
       </div>
       <!-- FORM HERE -->
     </div>
 
-
+{% endif %}
 
 
 

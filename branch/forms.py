@@ -1,8 +1,7 @@
 from django import forms
 from django.core.validators import MinValueValidator
 
-
-from .models import Stick, MagicWand, Survachki, Fetchers
+from .models import MagicWand, Survachki, Fetchers
 
 
 class CreateMagicWandForm(forms.ModelForm):
@@ -69,7 +68,7 @@ class CreateFetchersForm(forms.ModelForm):
                                    }
                                ))
 
-    barkness = forms.IntegerField(required=True,
+    happiness = forms.IntegerField(required=True,
                                validators=[MinValueValidator(10)],
                                widget=forms.TextInput(
                                    attrs={

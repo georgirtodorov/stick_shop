@@ -2,19 +2,11 @@ from django.shortcuts import render
 from django.views import generic
 from .models import MagicWand, Survachki, Fetchers, Stick
 from django.contrib.auth.mixins import LoginRequiredMixin
-from accounts.models import ProfileUser , User
-from collections.abc import Iterable
-from django.http import HttpResponse, HttpResponseRedirect
-from django.core import serializers
-
+from accounts.models import ProfileUser, User
+from django.http import HttpResponseRedirect
 
 from .forms import CreateMagicWandForm, CreateFetchersForm, CreateSurvachkiForm
 
-def serialize_data(queryset):
-    if isinstance(queryset, Iterable):
-        return serializers.serialize('json', queryset)
-    else:
-        return serializers.serialize('json', [ queryset ])
 
 # Create your views here.
 def has_access_to_modify(current_user, item):
@@ -24,31 +16,6 @@ def has_access_to_modify(current_user, item):
         return True
     return False
 
-'''PRODUCT DETAILS '''
-
-
-'''USER STICKS'''
-
-class UserStickList(LoginRequiredMixin, generic.ListView):
-    model = Stick
-    template_name = 'stick_list.html'
-    context_object_name = 'stick'
-
-    def get_queryset(self):
-        user_id = int(self.request.user.id)
-
-        try:
-            user = ProfileUser.objects.all().filter(user__pk=user_id)[0]
-            sticks = Stick.objects.all().filter(user = user.pk)
-            return sticks
-        except:
-            return []
-
-
-class StickList(generic.ListView):
-    model = Stick
-    template_name = 'survachki_list.html'
-    context_object_name = 'survachki'
 
 
     '''CREATE FORMS'''
@@ -62,7 +29,7 @@ class MagicWandCreate(LoginRequiredMixin, generic.CreateView):
     model = MagicWand
     template_name = 'Item_create.html'
     form_class = CreateMagicWandForm
-    success_url = '/branch/create/'
+    success_url = '/branch/magic_wand/'
 
     def form_valid(self, form):
         print(self.request.user.id)

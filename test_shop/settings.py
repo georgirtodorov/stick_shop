@@ -43,7 +43,6 @@ INSTALLED_APPS = [
     'accounts',
     'common',
     'branch',
-    'reviews'
 ]
 
 MIDDLEWARE = [

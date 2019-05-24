@@ -1,7 +1,7 @@
 from django.db import models
 from django.core.validators import MinValueValidator, MaxValueValidator
 
-from accounts.models import ProfileUser, User
+from accounts.models import User
 
 
 class Stick(models.Model):
