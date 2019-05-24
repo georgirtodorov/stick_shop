@@ -22,6 +22,7 @@ urlpatterns = [
 
     re_path('^profile/$', views.redirect_to_user_profile, name='redirect-user-detail'),
     re_path('^profile/(?P<pk>\d+)/$', views.UserProfile.as_view(), name='user-detail'),
+    re_path('^profile/delete/(?P<pk>\d+)/$', views.ProfileDelete.as_view(), name='profile-delete'),
 
 ]
 
