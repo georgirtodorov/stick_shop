@@ -37,8 +37,8 @@
       <div class="media">
         <img class="rounded-circle account-img" src="{{ user.profile_pic }}">
         <div class="media-body">
-          <h2 class="account-heading">{{ user_profile.username }}</h2>
-          <h2 class="account-heading">{{ user_profile.email }}</h2>
+            <h2 class="account-heading"><small>Uploaded by: </small><b>{{ user_profile.username }}</b></h2>
+            <h2 class="account-heading"><small>Email:</small> <b>{{ user_profile.email }}</b></h2>
         </div>
       </div>
       <!-- FORM HERE -->
