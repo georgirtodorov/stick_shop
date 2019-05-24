@@ -39,6 +39,9 @@
             <p class="card-text">Posted by: {{s.username}}</p>
             <p class="card-text">Category: {{s.category}}</p>
 
+
+            <a href="{% url 'user_view-detail' s.username.id %}" class="btn btn-success">View Profile</a>
+
 {% if s.category == 'wizzard' and user.id == s.username.id or user.is_superuser and s.category == 'wizzard'%}
               <a href="{% url 'magic_wand-edit' s.id %}" class="btn btn-success">Edit</a>
               <a href="{% url 'magic_wand-delete' s.id %}" class="btn btn-danger">Delete</a>

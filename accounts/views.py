@@ -123,3 +123,11 @@ def has_access_to_edit(current_user, item):
         return True
     return False
 
+
+'''VIEW PROFILE'''
+
+class ViewUserProfile(DetailView):
+
+    model = User
+    template_name = 'user_profile.html'
+    context_object_name = 'user_profile'
